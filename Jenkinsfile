@@ -2,11 +2,15 @@ pipeline {
     agent any
 
     stages {
-        stage('TAHA') {
+        stage('build') {
+            agent{
+                docker{
+                    image 'node-18:alpine'
+                }
+            }
             steps {
                   sh '''
-                  touch test.txt
-                  echo 'Hello World' > test.txt
+                  npm run build
                   pwd
                   ls -l
                   '''
